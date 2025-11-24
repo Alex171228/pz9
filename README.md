@@ -71,7 +71,10 @@
        return
    }
    ```
-### В проекте используется AutoMigrate
+### SQL/миграции 
+В проекте используется автоматическая миграция схемы базы данных с помощью GORM.
+При запуске приложения вызывается метод AutoMigrate(), который автоматически создаёт таблицу users, если она отсутствует.
+
 В cmd/api/main.go
    ```go
     users := repo.NewUserRepo(db)
@@ -85,3 +88,9 @@
        return r.db.AutoMigrate(&core.User{})
    }
    ```
+Таблица users 
+
+<img width="425" height="183" alt="изображение" src="https://github.com/user-attachments/assets/1e3a9ca0-44b5-4255-b1fd-64d1ba5d440c" /> 
+
+<img width="1234" height="334" alt="изображение" src="https://github.com/user-attachments/assets/7760a6aa-0838-4e52-afe5-e755892d1f6a" /> 
+
