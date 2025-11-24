@@ -49,6 +49,39 @@
 
 5. Неверный пароль
 
-   <img width="525" height="492" alt="изображение" src="https://github.com/user-attachments/assets/2d3b4814-a433-4bbe-b5dc-145e5cb5db3d" /> 
+   <img width="525" height="492" alt="изображение" src="https://github.com/user-attachments/assets/2d3b4814-a433-4bbe-b5dc-145e5cb5db3d" />
+   
+Для выполнения запросов приложен json для Postman https://github.com/Alex171228/pz9/blob/main/pz9-auth-postman-collection.json
 
-Для выполнения запросов приложен json для Postman
+### Фрагменты кода
+Вызов bcrypt.GenerateFromPassword
+   ```go
+   // Хэширование пароля при регистрации
+   hash, err := bcrypt.GenerateFromPassword([]byte(in.Password), h.BcryptCost)
+   if err != nil {
+       writeErr(w, http.StatusInternalServerError, "hash_failed")
+       return
+   }
+   ```
+Вызов bcrypt.CompareHashAndPassword
+   ```go
+   // Сравнение хэша и введённого пароля при логине
+   if bcrypt.CompareHashAndPassword([]byte(u.PasswordHash), []byte(in.Password)) != nil {
+       writeErr(w, http.StatusUnauthorized, "invalid_credentials")
+       return
+   }
+   ```
+### В проекте используется AutoMigrate
+В cmd/api/main.go
+   ```go
+    users := repo.NewUserRepo(db)
+    if err := users.AutoMigrate(); err != nil {
+        log.Fatal("migrate:", err)
+    }
+   ```
+В internal/repo/user_repo.go
+   ```go
+   func (r *UserRepo) AutoMigrate() error {
+       return r.db.AutoMigrate(&core.User{})
+   }
+   ```
