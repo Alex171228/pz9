@@ -25,6 +25,7 @@
    ```bash
    BCRYPT_COST=12
    DB_DSN=postgres://<user>:<password>@localhost:5432/<dbname>?sslmode=disable
+   APP_ADDR=:8081
    ```
 3. Установите зависимости
    ```bash
