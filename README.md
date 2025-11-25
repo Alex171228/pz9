@@ -26,7 +26,6 @@
    BCRYPT_COST=12
    DB_DSN=postgres://<user>:<password>@localhost:5432/<dbname>?sslmode=disable
    ```
-   Переменная APP_ADDR не применяется, так как сервер работает строго на порту 8081.
 3. Установите зависимости
    ```bash
    go mod tidy
