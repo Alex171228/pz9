@@ -14,7 +14,7 @@
 ### Запуск проекта
 1. Склонировать репозиторий и перейти в папку проекта:
    ```bash
-   git clone https://github.com/Alex171228/Pz8
+   git clone https://github.com/Alex171228/Pz9
    cd pz9
     ```
 2. Создать файл .env:
